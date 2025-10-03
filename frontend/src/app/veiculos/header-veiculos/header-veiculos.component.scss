@@ -1,0 +1,78 @@
+.header-veiculos{
+    border-bottom: 2px solid rgb(179, 179, 179);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: 3em;
+    background-color: lightgray;
+
+    div {
+        border-right: 2px solid rgb(179, 179, 179);
+        padding-right: 2em;
+    }
+
+    span {
+        font-size: 2.3vh;
+        font-weight: 500;
+        color: rgb(241, 241, 241);
+        padding-right: 1em;
+        padding-left: 1em;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        text-align: center;
+    }
+
+    .quantidade-veiculos{
+        display: flex;
+        gap: 1em;
+        .no-border {
+            border: none;
+        }
+        span {
+            border-right: 2px solid rgb(179, 179, 179);
+            span {
+                font-size: 1.7vh;
+                border: none;
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .total{
+                color: rgb(50, 137, 250);
+            }
+            .com-fotos{
+                color: rgb(36, 190, 44);
+            }
+            .sem-fotos{
+                color: rgb(189, 0, 0);
+            }
+        }
+    }
+    
+    .exportar-estoque {
+        a {
+            display: flex;
+            cursor: pointer;
+            padding-right: 1em;
+            padding-left: 1em;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+
+            fa-icon{
+                color: rgb(31, 114, 68);
+            }
+
+            img {
+                width: 3em;
+            }
+        }
+    }
+
+    .cadastrar-veiculos{
+        
+    }
+}
