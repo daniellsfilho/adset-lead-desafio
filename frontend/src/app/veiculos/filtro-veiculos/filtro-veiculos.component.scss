@@ -1,0 +1,46 @@
+.filtro-veiculos-container {
+    border-bottom: 1px solid rgb(179, 179, 179);
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: 3em;
+    background-color: white;
+    justify-content: space-between;
+    form {
+        width: 100%;
+        display: flex;
+        .field {
+            margin-left: 1em;   
+            max-width: fit-content;     
+            label {
+                display: block;
+            }
+            input {
+                border-radius: 1.5vh;
+                border-width: 0.1vh;
+                border-color: lightgray;
+                height: 2.75vh;
+                background-color: rgb(241, 241, 241);
+            }
+            select {
+                width: 10vh;
+                background-color: rgb(241, 241, 241);
+                height: 3.2vh;
+                border-width: 0.1vh;
+                border-color: lightgray;
+                border-radius: 1.5vh 0 0 1.5vh;
+            }
+            .container-anos {
+                display: flex;
+                div {
+                    width: 10vh;
+                    #anoMax {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+}

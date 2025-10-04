@@ -13,6 +13,17 @@
         padding-right: 2em;
     }
 
+    a {
+        cursor: pointer;
+        padding-right: 1em;
+        padding-left: 1em;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
     span {
         font-size: 2.3vh;
         font-weight: 500;
@@ -53,14 +64,6 @@
     .exportar-estoque {
         a {
             display: flex;
-            cursor: pointer;
-            padding-right: 1em;
-            padding-left: 1em;
-            padding-top: 1vh;
-            padding-bottom: 1vh;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
 
             fa-icon{
                 color: rgb(31, 114, 68);
@@ -73,6 +76,35 @@
     }
 
     .cadastrar-veiculos{
-        
+        align-items: center;
+        display: flex;
+        .btn-cadastrar-veiculos {
+            border: 3px solid rgb(33, 137, 172);
+            border-radius: 90px;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            fa-icon {
+                color: rgb(33, 137, 172);
+            }
+        }
+    }
+
+    .salvar {
+        width: 75vh;
+        justify-content: flex-end;
+        align-items: center;
+        display: flex;
+        border: none;
+
+        .btn-salvar {
+            padding-right: 1em;
+            padding-left: 1em;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
+            background-color: orange;
+            border-radius: 1vh;
+            color: white;
+            font-size: 2.3vh;
+        }
     }
 }

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowCircleDown } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleDown, faCar, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'header-veiculos',
@@ -10,4 +10,6 @@ import { faArrowCircleDown } from '@fortawesome/free-solid-svg-icons'
 })
 export class HeaderVeiculosComponent {
     faCircleDown = faArrowCircleDown;
+    faCar = faCar;
+    faPlus = faPlusCircle;
  }
