@@ -1,48 +1,74 @@
-<div class="filtro-veiculos-container">
+<div class="filtro-veiculos-container" id="filtro-veiculos-container" style="display: none;">
     <div class="filtro">
-        <form>
+        <form [formGroup]="filtroForm">
             <div class="field">
                 <label for="placa" class="control-label">Placa </label>
-                <input type="text" class="form-control" id="placa" name="placa">
+                <input type="text" class="form-control" id="placa" name="placa" formControlName="placa">
             </div>
             <div class="field">
                 <label for="marca" class="control-label">Marca </label>
-                <input type="text" class="form-control" id="marca" name="marca">
+                <input type="text" class="form-control" id="marca" name="marca" formControlName="marca">
             </div>
             <div class="field">
                 <label for="modelo" class="control-label">Modelo </label>
-                <input type="text" class="form-control" id="modelo" name="modelo">
+                <input type="text" class="form-control" id="modelo" name="modelo" formControlName="modelo">
             </div>
             <div class="field">
                 <div class="container-anos">
                     <div>
                         <label for="anoMin" class="control-label">Ano Min.</label>
-                        <select name="anoMin" id="AnoMin"></select>
+                        <select name="anoMin" id="anoMin" formControlName="anoMin">
+                            <option [value]="null" selected></option>
+                            @for(ano of anos; track ano) {
+                                <option [value]="ano">{{ano}}</option>
+                            }
+                            
+                        </select>
                     </div>
                     <div>
                         <label for="anoMax" class="control-label">Ano Max.</label>
-                        <select name="anoMax" id="anoMax"></select>
+                        <select name="anoMax" id="anoMax" formControlName="anoMax">
+                            <option [value]="null" selected></option>
+                            @for(ano of anos; track ano) {
+                                <option [value]="ano">{{ano}}</option>
+                            }
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="field">
                 <label for="preco" class="control-label">Preço </label>
-                <select name="preco" id="preco"></select>
+                <select name="preco" id="preco" formControlName="preco">
+                    <option [value]="null" selected></option>
+                    @for(preco of precos; track preco) {
+                        <option [value]="preco.id">{{preco.faixa}}</option>
+                    }
+                </select>
             </div>
             <div class="field">
                 <label for="fotos" class="control-label">Fotos </label>
-                <select name="fotos" id="fotos"></select>
+                <select name="fotos" id="fotos" formControlName="fotos">
+                    <option [value]="null" selected></option>
+                    @for(foto of fotos; track foto) {
+                        <option [value]="foto.id">{{foto.filtro}}</option>
+                    }
+                </select>
             </div>
             <div class="field">
                 <label for="opcionais" class="control-label">Opcionais </label>
-                <input type="text" class="form-control" id="opcionais" name="opcionais">
+                <input type="text" class="form-control" id="opcionais" name="opcionais" formControlName="opcionais">
             </div>
             <div class="field">
                 <label for="cor" class="control-label">Cor </label>
-                <select name="cor" id="cor"></select>
+                <select name="cor" id="cor" formControlName="cor">
+                    <option [value]="null" selected></option>
+                    @for(cor of cores; track cor) {
+                        <option [value]="cor">{{cor}}</option>
+                    }
+                </select>
             </div>
             <div class="limpar">
-                <a class="btn-limpar"><fa-icon [icon]="faEraser" class="fa-1x"/></a>
+                <a class="btn-limpar" (click)="limparFiltros()"><fa-icon [icon]="faEraser" class="fa-1x"/></a>
             </div>
         </form>
     </div>
@@ -51,7 +77,26 @@
     <div class="buscar">
         <a><fa-icon [icon]="faSearch"/> Buscar</a>
     </div>
-    <div class="expandir">
-        <a><fa-icon [icon]="faSortUp"/></a>
+    <div class="expandir" (click)="expandirFiltros()">
+        <a id="fechar-filtro"><fa-icon [icon]="faSortUp"/></a>
+        <a id="abrir-filtro"><fa-icon [icon]="faSortDown"/></a>
+    </div>
+</div>
+<div class="ordenacao-veiculos">
+    <div class="limpar">
+        <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+        <a class="btn-limpar-ordenacao" (click)="limparOrdenacao()"><fa-icon [icon]="faEraser" class="fa-1x"/></a>
+    </div>
+    <div class="field-ordenacao">
+        Marca / Modelo <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+    </div>
+    <div class="field-ordenacao">
+        Ano <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+    </div>
+    <div class="field-ordenacao">
+        Preço <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+    </div>
+    <div class="field-ordenacao">
+        Fotos <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
     </div>
 </div>

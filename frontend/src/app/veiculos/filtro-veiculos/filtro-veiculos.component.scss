@@ -1,7 +1,9 @@
+#filtro-veiculos-container {
+    display: none;
+}
 .filtro-veiculos-container {
     justify-content: center;
     align-items: center;
-    display: flex;
     background-color: transparent;
     .filtro {
         border: 1px solid rgb(179, 179, 179);
@@ -11,7 +13,7 @@
         padding-bottom: 1em;
         width: 95%;
         max-width: 95%;
-        display: flex;
+        display: block;
         gap: 3em;
         background-color: white;
         justify-content: space-between;
@@ -73,6 +75,8 @@
     .buscar {
         background-color: rgb(0, 160, 0);
         padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
         justify-self: center;
         border-radius: 0 0 1em 1em;
         text-align: center;
@@ -84,6 +88,7 @@
         }
     }
     .expandir {
+        cursor: pointer;
         align-items: center;
         text-align: center;
         justify-content: center;
@@ -97,5 +102,37 @@
         border-radius: 0 0 1em 1em;
         border: 1px solid rgb(179, 179, 179);
         border-top: none;
+
+        #fechar-filtro {
+            display: none;
+        }
     }   
+}
+.ordenacao-veiculos {
+    margin-top: 5em;
+    display: flex;
+    width: 100%;
+    .limpar {
+        background-color: rgb(0, 160, 0);
+        color: white;
+        padding: 0.5em;
+        padding-right: 1em;
+        .btn-limpar-ordenacao {
+            background-color: rgb(241, 241, 241);
+            color: red;
+            padding: 0.25em;
+            border-radius: 90px;
+            text-align: center;
+            margin-left: 1em;
+            cursor: pointer;
+        }
+    }
+    .field-ordenacao {
+        margin-left: 2em;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-right: 2px solid rgb(179, 179, 179);
+        padding-right: 1em;
+    }
 }
