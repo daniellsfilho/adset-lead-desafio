@@ -12,5 +12,7 @@ namespace DAL.Repositories.Interfaces
     {
         Task Salvar(Veiculo veiculo);
         Task<IEnumerable<Veiculo>> Consultar(VeiculoFiltroDTO veiculoFiltroDto);
+        Task Update(Veiculo veiculo);
+        Task Delete(int id);
     }
 }

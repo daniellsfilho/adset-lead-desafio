@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using DAL.DTOs;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace Business.Services.Interfaces
 {
     public interface IVeiculoService
     {
-        Task Salvar(Veiculo veiculo);
+        Task Atualizar(int id, VeiculoEnvioDTO veiculoDTO);
+        Task Excluir(int id);
+        Task<IEnumerable<Veiculo>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO);
+        Task Salvar(VeiculoEnvioDTO veiculoDTO);
     }
 }

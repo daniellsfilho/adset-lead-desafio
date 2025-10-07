@@ -48,7 +48,7 @@ export class FiltroVeiculosComponent {
    public precos = [
     {'id': 1, 'faixa': '10 mil a 50 mil'},
     {'id': 2, 'faixa': '50 mil a 90 mil'},
-    {'id': 1, 'faixa': '+ 90 mil'}
+    {'id': 3, 'faixa': '+ 90 mil'}
    ]
 
    public fotos = [

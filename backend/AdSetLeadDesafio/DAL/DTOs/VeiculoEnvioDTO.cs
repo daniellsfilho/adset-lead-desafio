@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace DAL.DTOs
 {
-    public class Veiculo
+    public class VeiculoEnvioDTO
     {
-        //Marca, Modelo, Ano, Placa, Km, Cor, Preço, lista de opcionais para atribuir ao veículo ex.: (Ar Condicionado, Alarme, Airbag, Freio ABS)).
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Marca { get; set; }
         [Required]
@@ -26,6 +23,5 @@ namespace DAL.Entities
         public double Preco { get; set; }
         public int Km { get; set; }
         public string Opcionais { get; set; }
-        public int Fotos { get; set; }
     }
 }

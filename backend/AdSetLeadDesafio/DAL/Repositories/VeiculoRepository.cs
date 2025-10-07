@@ -1,6 +1,7 @@
 ﻿using DAL.DTOs;
 using DAL.Entities;
 using DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,75 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Veiculo>> Consultar(VeiculoFiltroDTO veiculoFiltroDto)
         {
-            throw new NotImplementedException();
+            var query = _db.Veiculos.AsQueryable();
+
+            if (!string.IsNullOrEmpty(veiculoFiltroDto.Placa))
+                query = query.Where(x => x.Placa.Contains(veiculoFiltroDto.Placa));
+
+            if (!string.IsNullOrEmpty(veiculoFiltroDto.Marca))
+                query = query.Where(x => x.Marca.Contains(veiculoFiltroDto.Marca));
+
+            if (!string.IsNullOrEmpty(veiculoFiltroDto.Modelo))
+                query = query.Where(x => x.Modelo.Contains(veiculoFiltroDto.Modelo));
+
+            if (veiculoFiltroDto.AnoMin != null)
+                query = query.Where(x => x.Ano >= veiculoFiltroDto.AnoMin);
+
+            if (veiculoFiltroDto.AnoMax != null)
+                query = query.Where(x => x.Ano <= veiculoFiltroDto.AnoMax);
+
+            if (veiculoFiltroDto.Preco != null)
+            {
+                switch (veiculoFiltroDto.Preco)
+                {
+                    case 1:
+                        query = query.Where(x => x.Preco >= 10000 && x.Preco <= 50000);
+                        break;
+                    case 2:
+                        query = query.Where(x => x.Preco >= 50000 && x.Preco <= 90000);
+                        break;
+                    case 3:
+                        query = query.Where(x => x.Preco >= 90000);
+                        break;
+                }
+            }
+
+            if(veiculoFiltroDto.Fotos != null)
+            {
+                switch (veiculoFiltroDto.Fotos)
+                {
+                    case 0:
+                        query = query.Where(x => x.Fotos > 0);
+                        break;
+                    case 1:
+                        query = query.Where(x => x.Fotos == 0);
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(veiculoFiltroDto.Cor))
+                query = query.Where(x => x.Cor == veiculoFiltroDto.Cor);
+
+            return await query.ToListAsync();
+        }
+
+        public async Task Delete(int id)
+        {
+            Veiculo veiculo = await _db.Veiculos.Where(x => x.Id == id).FirstAsync();
+            _db.Remove(veiculo);
+            await _db.SaveChangesAsync();   
         }
 
         public async Task Salvar(Veiculo veiculo)
         {
-            await _db.Veiculos.AddAsync(veiculo);
-            _db.SaveChanges();
+            _db.Veiculos.Add(veiculo);
+            await _db.SaveChangesAsync();
         }
 
+        public async Task Update(Veiculo veiculo)
+        {
+            _db.Veiculos.Update(veiculo);
+            await _db.SaveChangesAsync();
+        }
     }
 }
