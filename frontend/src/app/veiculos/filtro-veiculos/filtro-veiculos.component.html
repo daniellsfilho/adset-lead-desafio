@@ -74,29 +74,11 @@
     </div>
 </div>
 <div class="botoes">
-    <div class="buscar">
+    <button class="buscar" (click)="pesquisar()">
         <a><fa-icon [icon]="faSearch"/> Buscar</a>
-    </div>
-    <div class="expandir" (click)="expandirFiltros()">
+    </button>
+    <button class="expandir" (click)="expandirFiltros()">
         <a id="fechar-filtro"><fa-icon [icon]="faSortUp"/></a>
         <a id="abrir-filtro"><fa-icon [icon]="faSortDown"/></a>
-    </div>
-</div>
-<div class="ordenacao-veiculos">
-    <div class="limpar">
-        <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
-        <a class="btn-limpar-ordenacao" (click)="limparOrdenacao()"><fa-icon [icon]="faEraser" class="fa-1x"/></a>
-    </div>
-    <div class="field-ordenacao">
-        Marca / Modelo <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
-    </div>
-    <div class="field-ordenacao">
-        Ano <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
-    </div>
-    <div class="field-ordenacao">
-        Preço <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
-    </div>
-    <div class="field-ordenacao">
-        Fotos <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
-    </div>
+    </button>
 </div>

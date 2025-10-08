@@ -1,6 +1,141 @@
 <div class="veiculos">
     <div class="container-veiculos">
-        <header-veiculos></header-veiculos>
-        <filtro-veiculos></filtro-veiculos>
+        <header-veiculos (abrirModalEvent)="openDialog()" (salvarPacotesEvent)="salvarPacotes()"></header-veiculos>
+        <filtro-veiculos (pesquisarEvent)="pesquisar($event)"></filtro-veiculos>
+        @if(listaVeiculos.length > 0) {
+            <table class="table-veiculos">
+            <thead>
+                <tr class="cabecalho">
+                    <th></th>
+                    <th>
+                        <div class="limpar">
+                            <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+                            <a class="btn-limpar-ordenacao" (click)="limparOrdenacao()"><fa-icon [icon]="faEraser"
+                                    class="fa-1x" /></a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ordenacao-veiculos">
+                            <div class="field-ordenacao">
+                                <a>Marca / Modelo <fa-icon [icon]="faSort" class="fa-1x"></fa-icon></a>
+                            </div>
+                            <div class="field-ordenacao">
+                                <a>Ano <fa-icon [icon]="faSort" class="fa-1x"></fa-icon></a>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ordenacao-veiculos">
+                            <div class="field-ordenacao">
+                                Preço <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+                            </div>
+                            <div class="field-ordenacao">
+                                Fotos <fa-icon [icon]="faSort" class="fa-1x"></fa-icon>
+                            </div>
+                            <div class="field-qtd-itens">
+                                <select class="qtd-itens">
+                                    @for(qtd of quantidadeItens; track qtd) {
+                                    <option [value]="qtd.itens">{{qtd.label}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </th>
+
+                    <th>
+                        <div class="header-pacotes">
+                            <div class="header-icarros">
+                                <img src="/assets/icarros-logo-1.png" class="img-icarros">
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="header-pacotes">
+                            <div class="header-webmotors">
+                                <img src="/assets/webmotors-logo-1-1-2.png" class="img-webmotors">
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(veiculo of listaVeiculos; track veiculo) {
+                <tr class="row-veiculo">
+                    <td class="excluir"><button class="botao-excluir" (click)="openDialogExclusao(veiculo)"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+                    <td class="col-img"><img class="img-veiculos" src="/assets/adset-lead.png" alt=""></td>
+                    <td class="info-veiculo">
+                        <ng-container>
+                            <div class="marca">
+                                {{veiculo.marca}} {{veiculo.modelo}} | {{veiculo.ano}}
+                            </div>
+                            <div class="placa">
+                                <p>Placa - <span class="destaque">{{veiculo.placa}}</span></p>
+                                <p>KM - <span class="destaque">{{veiculo.km}}</span></p>
+                                <p>Cor - <span class="destaque">{{veiculo.cor}}</span></p>
+                            </div>
+                        </ng-container>
+                    </td>
+                    <td class="botoes-preco">
+                        <div class="botoes">
+                            <a class="btn-editar" (click)="abrirModalEditar(veiculo)"><fa-icon [icon]="faPenSquare" class="fa-2x"></fa-icon></a>
+                            <span class="opcoes"><fa-icon [icon]="faPhotoVideo" class="fa-2x"></fa-icon><br><span
+                                    class="destaque">{{veiculo.fotos}}</span></span>
+                            <span class="opcoes"><fa-icon [icon]="faCog" class="fa-2x"></fa-icon><br><span
+                                    class="destaque">Opcionais</span></span>
+                        </div>
+                        <div class="preco">
+                            <span class="destaque">R${{veiculo.preco}}</span>
+                        </div>
+                    </td>
+                    <td class="opcoes-icarros">
+                        <input type="radio" name="bronze-icarros-{{veiculo.id}}" id="bronze-icarros-{{veiculo.id}}"
+                            class="option" value="0" [value]="0" [(ngModel)]="veiculo.pacoteICarros"
+                            (change)="changePacote(veiculo.id, 'icarros', $event.target.value)">
+                        <label for="bronze-icarros-{{veiculo.id}}">Bronze</label><br>
+                        <input type="radio" name="diamante-icarros-{{veiculo.id}}" id="diamante-icarros-{{veiculo.id}}"
+                            class="option" value="1" [value]="1" [(ngModel)]="veiculo.pacoteICarros"
+                            (change)="changePacote(veiculo.id, 'icarros', $event.target.value)">
+                        <label for="diamante-icarros-{{veiculo.id}}">Diamante</label><br>
+                        <input type="radio" name="platinum-icarros-{{veiculo.id}}" id="platinum-icarros-{{veiculo.id}}"
+                            class="option" value="2" [value]="2" [(ngModel)]="veiculo.pacoteICarros"
+                            (change)="changePacote(veiculo.id, 'icarros', $event.target.value)">
+                        <label for="platinum-icarros-{{veiculo.id}}">Platinum</label><br>
+                        <input type="radio" name="basico-icarros-{{veiculo.id}}" id="basico-icarros-{{veiculo.id}}"
+                            class="option" value="3" [value]="3" [(ngModel)]="veiculo.pacoteICarros"
+                            (change)="changePacote(veiculo.id, 'icarros', $event.target.value)">
+                        <label for="basico-icarros-{{veiculo.id}}">Básico</label><br>
+                    </td>
+                    <td class="opcoes-webmotors">
+                        <input type="radio" name="bronze-webmotors-{{veiculo.id}}" id="bronze-webmotors-{{veiculo.id}}"
+                            class="option" value="0" [value]="0" [(ngModel)]="veiculo.pacoteWebMotors"
+                            (change)="changePacote(veiculo.id, 'webmotors', $event.target.value)">
+                        <label for="bronze-webmotors-{{veiculo.id}}">Bronze</label><br>
+                        <input type="radio" name="diamante-webmotors-{{veiculo.id}}"
+                            id="diamante-webmotors-{{veiculo.id}}" class="option" value="1" [value]="1"
+                            [(ngModel)]="veiculo.pacoteWebMotors"
+                            (change)="changePacote(veiculo.id, 'webmotors', $event.target.value)">
+                        <label for="diamante-webmotors-{{veiculo.id}}">Diamante</label><br>
+                        <input type="radio" name="platinum-webmotors-{{veiculo.id}}"
+                            id="platinum-webmotors-{{veiculo.id}}" class="option" value="2" [value]="2"
+                            [(ngModel)]="veiculo.pacoteWebMotors"
+                            (change)="changePacote(veiculo.id, 'webmotors', $event.target.value)">
+                        <label for="platinum-webmotors-{{veiculo.id}}">Platinum</label><br>
+                        <input type="radio" name="basico-webmotors-{{veiculo.id}}" id="basico-webmotors-{{veiculo.id}}"
+                            class="option" value="3" [value]="3" [(ngModel)]="veiculo.pacoteWebMotors"
+                            (change)="changePacote(veiculo.id, 'webmotors', $event.target.value)">
+                        <label for="basico-webmotors-{{veiculo.id}}">Básico</label><br>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        } @else {
+            <div class="aviso">
+                <fa-icon [icon]="faSearch" class="fa-3x"></fa-icon><br>
+
+                <h2>Faça uma pesquisa para visualizar os veículos cadastrados.</h2>
+            </div>
+        }
+        
     </div>
 </div>

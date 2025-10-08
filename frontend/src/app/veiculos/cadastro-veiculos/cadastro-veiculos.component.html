@@ -1,0 +1,45 @@
+<div class="teste">
+    <h1>{{labelHeader}} Veiculo</h1>
+    <form [formGroup]="cadastroForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Placa</mat-label>
+            <input matInput placeholder="ABC1234" formControlName="placa">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Marca</mat-label>
+            <input matInput placeholder="Fiat" formControlName="marca">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput placeholder="Uno" formControlName="modelo">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ano</mat-label>
+            <input matInput placeholder="2000" min="2000" max="2024" type="number" formControlName="ano">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>KM</mat-label>
+            <input matInput placeholder="1000" formControlName="km" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cor</mat-label>
+            <input matInput placeholder="Azul" formControlName="cor">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Preco</mat-label>
+            <input matInput placeholder="50000" formControlName="preco" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Opcionais</mat-label>
+            <input matInput placeholder="Ar Condicionado, Alarme, Airbag, Freio ABS, etc" formControlName="opcionais">
+        </mat-form-field>
+    </form>
+    <div class="button-row">
+        <button mat-fab extended class="error" (click)="close(false)">
+            Cancelar
+        </button>
+        <button mat-fab extended (click)="salvar()"> 
+            Salvar
+        </button>
+    </div>
+</div>

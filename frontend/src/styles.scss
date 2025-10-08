@@ -17,6 +17,51 @@ html {
   ));
 }
 
+$theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$magenta-palette
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 30px;
+  height: 100%;
+  @include mat.all-component-themes($theme);
+
+  .primary {
+    @include mat.button-color($theme: $theme, $color-variant: 'primary');
+    @include mat.fab-theme($theme: $theme, $color-variant: 'primary');
+  }
+
+  .secondary {
+    @include mat.button-theme($theme: $theme, $color-variant: 'secondary');
+  }
+
+  .tertiary {
+    @include mat.button-theme($theme: $theme, $color-variant: 'tertiary');
+  }
+
+  .error {
+    @include mat.button-theme($theme: $theme, $color-variant: 'error');
+    @include mat.fab-theme($theme: $theme, $color-variant: 'error');
+  }
+}
+
+html {
+  height: 100%;
+}
+
+@include mat.typography-hierarchy($theme);
+
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the

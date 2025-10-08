@@ -3,6 +3,191 @@
 }
 
 .container-veiculos {
-    float:right;
+    float: right;
     width: 90%;
+}
+
+.table-veiculos {
+    padding: 1em;
+    width: 85%;
+
+    .row-veiculo {
+        background-color: white;
+        height: 15vh;
+    }
+}
+
+.col-img {
+    width: 10em;
+}
+
+.img-veiculos {
+    height: 8em;
+}
+
+.excluir {
+    width: 0.5em;
+}
+
+.botao-excluir {
+    height: 10em;
+    cursor: pointer;
+    color: red;
+}
+
+.info-veiculo {
+    background-color: lightgray;
+    width: 20vw;
+
+    .marca {
+        background-color: white;
+        height: fit-content;
+        border-radius: 1em;
+        width: fit-content;
+        padding: 0.75em;
+        margin-left: 1em;
+    }
+
+    .placa {
+        height: fit-content;
+        font-weight: bold;
+        color: rgb(51, 51, 51);
+        margin-left: 1em;
+
+        p {
+            line-height: 0.5;
+        }
+    }
+}
+
+.destaque {
+    color: rgb(0, 160, 0);
+}
+
+.botoes-preco {
+    width: 20vw;
+    background-color: lightgray;
+    justify-content: end;
+    align-items: end;
+
+    .botoes {
+        height: 70%;
+        display: flex;
+        justify-content: end;
+        align-items: bottom;
+
+        .btn-editar {
+            cursor: pointer;
+            padding: 0.2em;
+            border-radius: 1em;
+        }
+
+        .btn-editar:hover {
+            background-color: rgb(33, 137, 172);
+            color: white;
+        }
+
+        .opcoes {
+            margin-left: 1em;
+            text-align: center;
+        }
+    }
+
+    .preco {
+        display: flex;
+        height: 30%;
+        width: 30%;
+        margin-top: 2em;
+        display: flex;
+        justify-self: end;
+        align-items: flex-end;
+        font-size: medium;
+        background-color: rgb(231, 231, 231);
+    }
+}
+
+.opcoes {
+    .opcoes-icarros {
+        display: block;
+    }
+}
+
+.limpar {
+    background-color: rgb(0, 160, 0);
+    padding: 0.5em;
+    align-items: last baseline;
+    display: flex;
+    color: whitesmoke;
+
+    a {
+        background-color: rgb(241, 241, 241);
+        color: red;
+        padding: 0.25em;
+        border-radius: 90px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.cabecalho {
+    vertical-align: bottom;
+}
+
+.ordenacao-veiculos {
+    height: 3em;
+    display: flex;
+    justify-content: space-between;
+
+    .field-ordenacao {
+        margin-left: 2em;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-right: 2px solid rgb(179, 179, 179);
+        padding-right: 1em;
+    }
+
+    .field-qtd-itens {
+        margin-left: 10em;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+
+        .qtd-itens {
+            padding: 0.75em;
+            font-size: 0.9em;
+            text-align: center;
+            border-radius: 0.5em 0 0 0.5em;
+        }
+    }
+}
+
+.header-pacotes {
+
+    .header-icarros {
+        height: 5em;
+        background-color: white;
+        padding: 0.5em;
+        .img-icarros {
+            height: 5em;
+        }
+    }
+
+    .header-webmotors {
+        align-content: center;
+        height: 5em;
+        background-color: white;
+        padding: 0.5em;
+
+        .img-webmotors {
+            height: 3em;
+        }
+    }
+}
+
+.aviso {
+    height: 30vh;
+    align-content: center;
+    text-align: center;
+    color: rgb(156, 156, 156);
 }

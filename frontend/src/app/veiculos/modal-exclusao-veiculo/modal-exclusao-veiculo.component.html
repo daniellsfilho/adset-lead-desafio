@@ -1,0 +1,8 @@
+<div class="modal">
+    <h2>Deseja excluir o veículo {{data.marca}} {{data.modelo}} | {{data.ano}} de placa {{data.placa}}?</h2>
+
+    <div class="botoes">
+        <button mat-button extended (click)="close(false)">Não</button>
+        <button mat-fab extended class="error" (click)="excluir()">Sim</button>
+    </div>
+</div>

@@ -9,9 +9,9 @@
         <a><img src="assets/excel.png" alt=""> <fa-icon [icon]="faCircleDown" class="fa-2x"/></a>
     </div> 
     <div class="cadastrar-veiculos">
-        <a class="btn-cadastrar-veiculos" title="Cadastrar Veículos"><fa-icon [icon]="faCar" class="fa-3x" /><fa-icon [icon]="faPlus" class="fa-1x fa-plus"/></a>
+        <a class="btn-cadastrar-veiculos" (click)="abrirModal()" title="Cadastrar Veículos"><fa-icon [icon]="faCar" class="fa-3x" /><fa-icon [icon]="faPlus" class="fa-1x fa-plus"/></a>
     </div>
     <div class="salvar">
-        <a class="btn-salvar"> SALVAR </a>
+        <button class="btn-salvar" (click)="salvarPacotes()"> SALVAR </button>
     </div>
 </div>

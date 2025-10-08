@@ -1,0 +1,21 @@
+.modal {
+    text-align: center;
+    width: 25vw;
+    height: 25vh;
+    justify-content: center;
+    padding: 1em;
+
+    h2 {
+        margin-top: 2em;
+        line-height: 1.5;
+    }
+
+    .botoes {
+        justify-self: center;
+        align-items: center;
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        margin-top: 3em;
+    }
+}
