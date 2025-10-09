@@ -21,7 +21,6 @@ export class CadastroVeiculosComponent {
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<CadastroVeiculosComponent>, private veiculoService: VeiculoService) 
     { 
-        console.log(data != null)
         if(data) {
             this.labelHeader = 'Atualizar'
             this.setValueForm(data)

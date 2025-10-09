@@ -42,7 +42,6 @@ export class ModalUploadFotosComponent {
                         fK_Veiculo: this.data.fK_Veiculo,
                         base64url: this.imagePreview
                     })
-                console.log(this.files)
                 this.cdr.detectChanges();
             };
 

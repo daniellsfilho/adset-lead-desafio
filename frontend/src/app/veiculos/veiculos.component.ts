@@ -166,7 +166,6 @@ export class VeiculosComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result)
             if (this.listaVeiculos && result == true)
                 this.pesquisar(this.veiculoFiltro)
 
