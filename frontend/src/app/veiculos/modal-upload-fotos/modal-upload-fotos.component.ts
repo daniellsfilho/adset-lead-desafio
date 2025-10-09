@@ -5,18 +5,20 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FotoEnvioDTO } from "../../models/fotoEnvioDTO";
 import { FotoService } from "../../services/fotos.service";
 import { catchError } from "rxjs";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @Component({
     selector: 'modal-upload-fotos',
     templateUrl: 'modal-upload-fotos.component.html',
     styleUrl: 'modal-upload-fotos.component.scss',
-    imports: [MatButtonModule, MatInputModule]
+    imports: [MatButtonModule, MatInputModule, FontAwesomeModule]
 })
 export class ModalUploadFotosComponent {
     public selectedFileName = ''
     public files: FotoEnvioDTO[] = []
     public imagePreview = ''
-
+    faTrash = faTrash
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ModalUploadFotosComponent>, private cdr: ChangeDetectorRef, 
         private fotoService: FotoService) 
     { 
@@ -57,5 +59,10 @@ export class ModalUploadFotosComponent {
         ).subscribe(() => {
             this.close(true)
         })
+    }
+
+    public excluirImagem(i: any) {
+        this.files.splice(i, 1)
+        this.cdr.detectChanges()
     }
 }

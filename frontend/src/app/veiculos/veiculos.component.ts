@@ -100,6 +100,17 @@ export class VeiculosComponent {
                 veiculo: veiculo
             }
         }) 
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result == true) {
+
+                this.pesquisar(this.veiculoFiltro)
+
+                const dialogAviso = this.dialog.open(ModalAlertasComponent, {
+                    data: 'Fotos atualizadas com sucesso!'
+                })
+            }
+        });
     }
 
     changePacote(id: any, tipo: string, valor: any) {

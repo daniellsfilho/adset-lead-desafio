@@ -17,8 +17,27 @@
         display: none;
     }
 
-    .img-thumbnail {
-        border: 2px solid #ddd;
-        border-radius: 5px;
+    .image-preview {
+        padding: 1em;
+        color: whitesmoke;
+        .img-thumbnail {
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        margin-bottom: 2em;
+    }
+
+    .error-custom  {
+        background-color: rgb(250, 72, 72);
+        color: white;
+    }
+
+    .buttons-modal {
+        margin-top: 5em;
+        padding-bottom: 1em;
+        justify-self: center;
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
     }
 }

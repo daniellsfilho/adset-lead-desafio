@@ -1,17 +1,23 @@
 <div class="modal-upload-fotos">
     <h2>{{data.veiculo.marca}} {{data.veiculo.modelo}} | {{data.veiculo.ano}} - {{data.veiculo.placa}}</h2>
 
-    <mat-form-field appearance="outline" class="form-field-file">
-        <button mat-raised-button (click)="fileInput.click()">Choose File</button>
-        <input type="file" #fileInput hidden (change)="onFileSelected($event)" class="file" accept="image/*"/>
-        <input matInput hidden readonly />
-    </mat-form-field><br>
+    <div [hidden]="files.length >= 15">
+        <mat-form-field appearance="outline" class="form-field-file">
+            <button mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input type="file" #fileInput hidden (change)="onFileSelected($event)" class="file" accept="image/*"/>
+            <input matInput hidden readonly />
+        </mat-form-field><br>
+    </div>
 
     @for(f of files; track f){
         <div class="image-preview">
             <img [src]="f.base64url" alt="Image Preview" class="img-thumbnail" style="max-width: 300px;"><br>
+            <button mat-fab extended class="error-custom" (click)="excluirImagem(files.indexOf(f))"><fa-icon [icon]="faTrash"></fa-icon> Apagar Imagem</button>
         </div>
     }
 
-    <button mat-fab expanded (click)="enviarImagens()">Enviar</button>
+    <div class="buttons-modal">
+        <button mat-button (click)="close(false)" class="error">Cancelar</button>
+        <button mat-fab extended (click)="enviarImagens()" class="enviar">Enviar</button>
+    </div>
 </div>
