@@ -12,7 +12,8 @@ namespace Business.Services.Interfaces
     {
         Task Atualizar(int id, VeiculoEnvioDTO veiculoDTO);
         Task Excluir(int id);
-        Task<IEnumerable<Veiculo>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO);
+        Task<IEnumerable<VeiculoReadDto>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO);
         Task Salvar(VeiculoEnvioDTO veiculoDTO);
+        Task AtualizarPacotes(IEnumerable<VeiculoEnvioPacoteDTO> veiculoEnvioPacoteDTOs);
     }
 }

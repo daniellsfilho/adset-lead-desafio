@@ -38,7 +38,7 @@ namespace API.Controllers
         {
             try
             {
-                IEnumerable<Veiculo> veiculos = await _veiculoService.GetVeiculosByFiltro(veiculoFiltroDTO);
+                IEnumerable<VeiculoReadDto> veiculos = await _veiculoService.GetVeiculosByFiltro(veiculoFiltroDTO);
                 return Ok(veiculos);
             }
             catch (Exception ex)
@@ -71,6 +71,20 @@ namespace API.Controllers
             try
             {
                 await _veiculoService.Excluir(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPut("/updatePacotes")]
+        public async Task<ActionResult> AtualizarPacotesVeiculos([FromBody] IEnumerable<VeiculoEnvioPacoteDTO> veiculoEnvioPacoteDTOs)
+        {
+            try
+            {
+                await _veiculoService.AtualizarPacotes(veiculoEnvioPacoteDTOs);
                 return Ok();
             }
             catch (Exception ex)

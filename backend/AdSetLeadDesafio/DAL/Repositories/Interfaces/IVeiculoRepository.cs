@@ -11,8 +11,9 @@ namespace DAL.Repositories.Interfaces
     public interface IVeiculoRepository
     {
         Task Salvar(Veiculo veiculo);
-        Task<IEnumerable<Veiculo>> Consultar(VeiculoFiltroDTO veiculoFiltroDto);
+        Task<IEnumerable<VeiculoReadDto>> Consultar(VeiculoFiltroDTO veiculoFiltroDto);
         Task Update(Veiculo veiculo);
         Task Delete(int id);
+        Task<Veiculo> GetById(int id);
     }
 }

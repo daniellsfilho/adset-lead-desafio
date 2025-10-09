@@ -42,7 +42,7 @@ namespace Business.Services
             await _veiculoRepository.Delete(id);
         }
 
-        public async Task<IEnumerable<Veiculo>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO)
+        public async Task<IEnumerable<VeiculoReadDto>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO)
         {
             return await _veiculoRepository.Consultar(veiculoFiltroDTO);
         }
@@ -61,6 +61,18 @@ namespace Business.Services
                 Opcionais = veiculoDTO.Opcionais
             };
             await _veiculoRepository.Salvar(veiculo);
+        }
+
+        public async Task AtualizarPacotes(IEnumerable<VeiculoEnvioPacoteDTO> veiculoEnvioPacoteDTOs)
+        {
+            foreach(VeiculoEnvioPacoteDTO veiculoEnvioPacoteDTO in veiculoEnvioPacoteDTOs)
+            {
+                Veiculo veiculo = await _veiculoRepository.GetById(veiculoEnvioPacoteDTO.Id);
+                veiculo.PacoteICarros = veiculoEnvioPacoteDTO.PacoteICarros;
+                veiculo.PacoteWebMotors = veiculoEnvioPacoteDTO.PacoteWebMotors;
+
+                await _veiculoRepository.Update(veiculo);
+            }
         }
     }
 }

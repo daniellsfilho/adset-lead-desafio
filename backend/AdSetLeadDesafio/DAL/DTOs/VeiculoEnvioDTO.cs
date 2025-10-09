@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,5 +24,15 @@ namespace DAL.DTOs
         public double Preco { get; set; }
         public int Km { get; set; }
         public string Opcionais { get; set; }
+    }
+
+    public class VeiculoEnvioPacoteDTO
+    {
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        public EPacote PacoteICarros { get; set; }
+        [Required]
+        public EPacote PacoteWebMotors { get; set; }
     }
 }

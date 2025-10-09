@@ -3,6 +3,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,41 +11,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251008140645_AdicaoCamposPacotes")]
+    partial class AdicaoCamposPacotes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.9")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("DAL.Entities.Foto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("FK_Veiculo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("base64url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FK_Veiculo");
-
-                    b.ToTable("Fotos");
-                });
 
             modelBuilder.Entity("DAL.Entities.Veiculo", b =>
                 {
@@ -60,6 +38,9 @@ namespace DAL.Migrations
                     b.Property<string>("Cor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Fotos")
+                        .HasColumnType("int");
 
                     b.Property<int>("Km")
                         .HasColumnType("int");
@@ -95,22 +76,6 @@ namespace DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Veiculos");
-                });
-
-            modelBuilder.Entity("DAL.Entities.Foto", b =>
-                {
-                    b.HasOne("DAL.Entities.Veiculo", "Veiculo")
-                        .WithMany("Fotos")
-                        .HasForeignKey("FK_Veiculo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Veiculo");
-                });
-
-            modelBuilder.Entity("DAL.Entities.Veiculo", b =>
-                {
-                    b.Navigation("Fotos");
                 });
 #pragma warning restore 612, 618
         }

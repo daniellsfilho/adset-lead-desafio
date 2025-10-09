@@ -6,6 +6,7 @@ namespace DAL
     public class AppDbContext : DbContext
     {
         public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Foto> Fotos { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
         { }

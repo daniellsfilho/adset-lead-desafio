@@ -18,7 +18,7 @@ namespace DAL.Repositories
             _db = db;
         }
 
-        public async Task<IEnumerable<Veiculo>> Consultar(VeiculoFiltroDTO veiculoFiltroDto)
+        public async Task<IEnumerable<VeiculoReadDto>> Consultar(VeiculoFiltroDTO veiculoFiltroDto)
         {
             var query = _db.Veiculos.AsQueryable();
 
@@ -58,10 +58,10 @@ namespace DAL.Repositories
                 switch (veiculoFiltroDto.Fotos)
                 {
                     case 0:
-                        query = query.Where(x => x.Fotos > 0);
+                        query = query.Where(x => x.Fotos.Count() > 0);
                         break;
                     case 1:
-                        query = query.Where(x => x.Fotos == 0);
+                        query = query.Where(x => x.Fotos.Count() == 0);
                         break;
                 }
             }
@@ -69,7 +69,26 @@ namespace DAL.Repositories
             if (!string.IsNullOrEmpty(veiculoFiltroDto.Cor))
                 query = query.Where(x => x.Cor == veiculoFiltroDto.Cor);
 
-            return await query.ToListAsync();
+            return await query.Select(x => new VeiculoReadDto()
+            {
+                Id = x.Id,
+                Marca = x.Marca,
+                PacoteICarros = x.PacoteICarros,
+                PacoteWebMotors = x.PacoteWebMotors,
+                Placa = x.Placa,
+                Preco = x.Preco,
+                Ano = x.Ano,
+                Cor = x.Cor,
+                Opcionais = x.Opcionais,
+                Km = x.Km,
+                Modelo = x.Modelo,
+                Fotos = x.Fotos.Select(f => new FotoReadDTO()
+                {
+                    Id = f.Id,
+                    base64url = f.base64url,
+                    FK_Veiculo = f.FK_Veiculo
+                })
+            }).ToListAsync();
         }
 
         public async Task Delete(int id)
@@ -89,6 +108,11 @@ namespace DAL.Repositories
         {
             _db.Veiculos.Update(veiculo);
             await _db.SaveChangesAsync();
+        }
+
+        public async Task<Veiculo> GetById(int id)
+        {
+            return await _db.Veiculos.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }
