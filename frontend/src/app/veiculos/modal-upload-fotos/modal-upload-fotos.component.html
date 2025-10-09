@@ -1,0 +1,17 @@
+<div class="modal-upload-fotos">
+    <h2>{{data.veiculo.marca}} {{data.veiculo.modelo}} | {{data.veiculo.ano}} - {{data.veiculo.placa}}</h2>
+
+    <mat-form-field appearance="outline" class="form-field-file">
+        <button mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input type="file" #fileInput hidden (change)="onFileSelected($event)" class="file" accept="image/*"/>
+        <input matInput hidden readonly />
+    </mat-form-field><br>
+
+    @for(f of files; track f){
+        <div class="image-preview">
+            <img [src]="f.base64url" alt="Image Preview" class="img-thumbnail" style="max-width: 300px;"><br>
+        </div>
+    }
+
+    <button mat-fab expanded (click)="enviarImagens()">Enviar</button>
+</div>

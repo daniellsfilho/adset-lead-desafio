@@ -1,0 +1,24 @@
+.modal-upload-fotos {
+    text-align: center;
+    height: 90vh;
+    width: 25vw;
+
+    h2 {
+        margin-top: 3em;
+    }
+
+    .form-field-file {
+        border: none;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .file {
+        display: none;
+    }
+
+    .img-thumbnail {
+        border: 2px solid #ddd;
+        border-radius: 5px;
+    }
+}

@@ -80,6 +80,7 @@
             cursor: pointer;
             padding: 0.2em;
             border-radius: 1em;
+            height: fit-content;
         }
 
         .btn-editar:hover {
@@ -88,8 +89,20 @@
         }
 
         .opcoes {
+            cursor: pointer;
+            padding: 0.2em;
+            border-radius: 1em;
             margin-left: 1em;
             text-align: center;
+        }
+
+        .opcoes:hover {
+            background-color: rgb(33, 137, 172);
+            color: white;
+
+            .destaque {
+                color: white;
+            }
         }
     }
 

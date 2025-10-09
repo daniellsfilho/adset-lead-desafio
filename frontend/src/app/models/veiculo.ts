@@ -8,7 +8,7 @@ export class Veiculo {
     public preco?: number
     public km?: number
     public opcionais?: string
-    public fotos?: number
+    public fotos?: any
     public pacoteICarros?: number
     public pacoteWebMotors?: number
 }

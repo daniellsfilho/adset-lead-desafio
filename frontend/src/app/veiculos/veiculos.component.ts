@@ -14,6 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { VeiculoEnvioPacoteDTO } from "../models/veiculoEnvioDTO";
 import { ModalExclusaoVeiculoComponent } from "./modal-exclusao-veiculo/modal-exclusao-veiculo.component";
 import { ModalAlertasComponent } from "./modal-alertas/modal-alertas.component";
+import { ModalOpcionaisComponent } from "./modal-opcionais/modal-opcionais.component";
+import { ModalUploadFotosComponent } from "./modal-upload-fotos/modal-upload-fotos.component";
 
 @Component({
     selector: 'veiculos',
@@ -82,6 +84,22 @@ export class VeiculosComponent {
                 })
             }
         });
+    }
+
+    openDialogOpcionais(veiculo: any) {
+        const dialogRef = this.dialog.open(ModalOpcionaisComponent, {
+            data: veiculo
+        });
+    }
+
+    openDialogFotos(veiculo: any) {
+        const dialogRef = this.dialog.open(ModalUploadFotosComponent, {
+            data: {
+                fK_Veiculo: veiculo.id,
+                fotos: veiculo.fotos,
+                veiculo: veiculo
+            }
+        }) 
     }
 
     changePacote(id: any, tipo: string, valor: any) {

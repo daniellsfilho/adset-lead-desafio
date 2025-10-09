@@ -78,10 +78,10 @@
                     <td class="botoes-preco">
                         <div class="botoes">
                             <a class="btn-editar" (click)="abrirModalEditar(veiculo)"><fa-icon [icon]="faPenSquare" class="fa-2x"></fa-icon></a>
-                            <span class="opcoes"><fa-icon [icon]="faPhotoVideo" class="fa-2x"></fa-icon><br><span
-                                    class="destaque">{{veiculo.fotos}}</span></span>
-                            <span class="opcoes"><fa-icon [icon]="faCog" class="fa-2x"></fa-icon><br><span
-                                    class="destaque">Opcionais</span></span>
+                            <a class="opcoes" (click)="openDialogFotos(veiculo)"><fa-icon [icon]="faPhotoVideo" class="fa-2x"></fa-icon><br><span
+                                    class="destaque">{{veiculo.fotos.length}}</span></a>
+                            <a class="opcoes" (click)="openDialogOpcionais(veiculo)"><fa-icon [icon]="faCog" class="fa-2x"></fa-icon><br><span
+                                    class="destaque">Opcionais</span></a>
                         </div>
                         <div class="preco">
                             <span class="destaque">R${{veiculo.preco}}</span>
