@@ -69,6 +69,9 @@ namespace DAL.Repositories
             if (!string.IsNullOrEmpty(veiculoFiltroDto.Cor))
                 query = query.Where(x => x.Cor == veiculoFiltroDto.Cor);
 
+            if (!string.IsNullOrEmpty(veiculoFiltroDto.Opcionais))
+                query = query.Where(x => x.Opcionais.Contains(veiculoFiltroDto.Opcionais));
+
             return await query.Select(x => new VeiculoReadDto()
             {
                 Id = x.Id,
@@ -113,6 +116,22 @@ namespace DAL.Repositories
         public async Task<Veiculo> GetById(int id)
         {
             return await _db.Veiculos.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetVeiculosCores()
+        {
+            return await _db.Veiculos.Select(x => x.Cor).Distinct().ToListAsync();
+        }
+
+        public async Task<QuantidadeVeiculosDTO> GetQuantidadeVeiculos()
+        {
+            IEnumerable<Veiculo> veiculos = await _db.Veiculos.ToListAsync();
+            return new QuantidadeVeiculosDTO()
+            {
+                Total = veiculos.Count(),
+                SemFotos = veiculos.Where(x => x.Fotos.Count() == 0).Count(),
+                ComFotos = veiculos.Where(x => x.Fotos.Count() > 0).Count()
+            };
         }
     }
 }

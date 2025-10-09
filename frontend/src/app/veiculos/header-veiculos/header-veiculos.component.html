@@ -1,8 +1,8 @@
 <div class="header-veiculos">
     <div class="quantidade-veiculos">
-        <span>0 veículos<br><span class="total">total</span></span>
-        <span>0 veículos<br><span class="com-fotos">com fotos</span></span>
-        <span class="no-border">0 veículos<br><span class="sem-fotos">sem fotos</span></span>
+        <span>{{quantidadeVeiculos.total}} veículos<br><span class="total">total</span></span>
+        <span>{{quantidadeVeiculos.comFotos}} veículos<br><span class="com-fotos">com fotos</span></span>
+        <span class="no-border">{{quantidadeVeiculos.semFotos}} veículos<br><span class="sem-fotos">sem fotos</span></span>
     </div>
     <div class="cadastrar-veiculos">
         <a class="btn-cadastrar-veiculos" (click)="abrirModal()" title="Cadastrar Veículos"><fa-icon [icon]="faCar" class="fa-3x" /><fa-icon [icon]="faPlus" class="fa-1x fa-plus"/></a>

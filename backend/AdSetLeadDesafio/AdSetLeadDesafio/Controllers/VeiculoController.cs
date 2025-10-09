@@ -92,5 +92,31 @@ namespace API.Controllers
                 throw ex;
             }
         }
+
+        [HttpGet("/cores")]
+        public async Task<ActionResult> GetVeiculosCores()
+        {
+            try
+            {
+                return Ok(await _veiculoService.GetVeiculosCores());
+            }
+            catch (Exception ex)
+            {
+                throw ex; 
+            }
+        }
+
+        [HttpGet("/quantidade-veiculos")]
+        public async Task<ActionResult> GetQuantidadeVeiculos()
+        {
+            try
+            {
+                return Ok(await _veiculoService.GetQuantidadeVeiculos());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

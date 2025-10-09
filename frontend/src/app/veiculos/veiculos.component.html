@@ -1,7 +1,7 @@
 <div class="veiculos">
     <div class="container-veiculos">
-        <header-veiculos (abrirModalEvent)="openDialog()" (salvarPacotesEvent)="salvarPacotes()"></header-veiculos>
-        <filtro-veiculos (pesquisarEvent)="pesquisar($event)"></filtro-veiculos>
+        <header-veiculos (abrirModalEvent)="openDialog()" (salvarPacotesEvent)="salvarPacotes()" [quantidadeVeiculos]="quantidadeVeiculos"></header-veiculos>
+        <filtro-veiculos (pesquisarEvent)="pesquisar($event)" [cores]="cores"></filtro-veiculos>
         @if(listaVeiculos.length > 0) {
             <table class="table-veiculos">
             <thead>
@@ -62,7 +62,13 @@
                 @for(veiculo of listaVeiculos; track veiculo) {
                 <tr class="row-veiculo">
                     <td class="excluir"><button class="botao-excluir" (click)="openDialogExclusao(veiculo)"><fa-icon [icon]="faTrash"></fa-icon></button></td>
-                    <td class="col-img"><img class="img-veiculos" src="/assets/adset-lead.png" alt=""></td>
+                    <td class="col-img">
+                        @if(veiculo.fotos.length == 0){
+                            <img class="img-veiculos" src="/assets/adset-lead.png" alt="">
+                        } @else {
+                            <img class="img-veiculos" [src]="veiculo.fotos[0].base64url" alt="">
+                        }
+                    </td>
                     <td class="info-veiculo">
                         <ng-container>
                             <div class="marca">

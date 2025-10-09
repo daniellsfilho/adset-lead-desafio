@@ -15,5 +15,7 @@ namespace DAL.Repositories.Interfaces
         Task Update(Veiculo veiculo);
         Task Delete(int id);
         Task<Veiculo> GetById(int id);
+        Task<IEnumerable<string>> GetVeiculosCores();
+        Task<QuantidadeVeiculosDTO> GetQuantidadeVeiculos();
     }
 }

@@ -15,5 +15,7 @@ namespace Business.Services.Interfaces
         Task<IEnumerable<VeiculoReadDto>> GetVeiculosByFiltro(VeiculoFiltroDTO veiculoFiltroDTO);
         Task Salvar(VeiculoEnvioDTO veiculoDTO);
         Task AtualizarPacotes(IEnumerable<VeiculoEnvioPacoteDTO> veiculoEnvioPacoteDTOs);
+        Task<IEnumerable<string>> GetVeiculosCores();
+        Task<QuantidadeVeiculosDTO> GetQuantidadeVeiculos();
     }
 }

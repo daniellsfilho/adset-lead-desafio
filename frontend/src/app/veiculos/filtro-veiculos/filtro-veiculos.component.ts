@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faEraser, faGlasses, faSearch, faSortDown, faSortUp, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -11,8 +11,9 @@ import { VeiculoFiltroDTO } from "../../models/veiculoFiltroDTO";
     imports: [FontAwesomeModule, ReactiveFormsModule]
 })
 export class FiltroVeiculosComponent {
-
+    
     @Output() pesquisarEvent = new EventEmitter<VeiculoFiltroDTO>()
+    @Input() public cores = []
 
     faEraser = faEraser;
     faGlass = faGlasses;
@@ -60,11 +61,6 @@ export class FiltroVeiculosComponent {
         { 'id': 1, 'filtro': 'Sem fotos' }
     ]
 
-    public cores = [
-        'azul',
-        'laranja',
-        'verde'
-    ]
 
     public filtroForm = new FormGroup({
         placa: new FormControl(''),
@@ -88,7 +84,7 @@ export class FiltroVeiculosComponent {
             preco: this.filtroForm.controls['preco'].value ? Number(this.filtroForm.controls['preco'].value) : null,
             fotos: this.filtroForm.controls['fotos'].value ? Number(this.filtroForm.controls['fotos'].value) : null,
             opcionais: this.filtroForm.controls['opcionais'].value,
-            cor: this.filtroForm.controls['cor'].value
+            cor: this.filtroForm.controls['cor'].value != "null" ? this.filtroForm.controls['cor'].value : null
         }
         this.pesquisarEvent.emit(veiculoFiltroDTO);
     }

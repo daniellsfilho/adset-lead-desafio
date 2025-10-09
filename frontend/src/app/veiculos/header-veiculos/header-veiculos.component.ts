@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowCircleDown, faCar, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,11 @@ export class HeaderVeiculosComponent {
 
     @Output() abrirModalEvent = new EventEmitter<any>()
     @Output() salvarPacotesEvent = new EventEmitter<any>()
+    @Input() quantidadeVeiculos = {
+        total: 0,
+        semFotos: 0,
+        comFotos: 0
+    }
 
     abrirModal() {
         this.abrirModalEvent.emit()

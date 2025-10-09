@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, NgZone } from "@angular/core";
+import { ChangeDetectorRef, Component, NgZone, OnInit } from "@angular/core";
 import { HeaderVeiculosComponent } from "./header-veiculos/header-veiculos.component";
 import { FiltroVeiculosComponent } from "./filtro-veiculos/filtro-veiculos.component";
 import { VeiculoService } from "../services/veiculos.service";
@@ -23,7 +23,7 @@ import { ModalUploadFotosComponent } from "./modal-upload-fotos/modal-upload-fot
     styleUrl: 'veiculos.component.scss',
     imports: [HeaderVeiculosComponent, FiltroVeiculosComponent, AsyncPipe, FontAwesomeModule, FormsModule]
 })
-export class VeiculosComponent {
+export class VeiculosComponent implements OnInit {
     faTrash = faTrash
     faPenSquare = faPenSquare
     faPhotoVideo = faCamera
@@ -35,6 +35,8 @@ export class VeiculosComponent {
     public veiculos?: Observable<Veiculo[]>
     public listaVeiculos: Veiculo[] = []
     private veiculoFiltro = new VeiculoFiltroDTO
+    public cores = []
+    public quantidadeVeiculos: any
 
     public quantidadeItens = [
         { "itens": 10, "label": "Exibir 10" },
@@ -43,7 +45,18 @@ export class VeiculosComponent {
         { "itens": 100, "label": "Exibir 100" },
     ]
 
-    constructor(private veiculoService: VeiculoService, public dialog: MatDialog, private cdr: ChangeDetectorRef, private ngZone: NgZone) { }
+    constructor(private veiculoService: VeiculoService, public dialog: MatDialog, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+
+    }
+
+    ngOnInit(): void {
+        this.veiculoService.getCores().subscribe(res => {
+            this.cores = res
+            this.veiculoService.getQuantidadeVeiculos().subscribe(res => {
+                this.quantidadeVeiculos = res
+            })
+        })
+    }
 
     public pesquisar(veiculoFiltroDTO: VeiculoFiltroDTO) {
         this.veiculoService.getVeiculosByFiltro(veiculoFiltroDTO).subscribe(res => {
@@ -99,7 +112,7 @@ export class VeiculosComponent {
                 fotos: veiculo.fotos,
                 veiculo: veiculo
             }
-        }) 
+        })
 
         dialogRef.afterClosed().subscribe(result => {
             if (result == true) {

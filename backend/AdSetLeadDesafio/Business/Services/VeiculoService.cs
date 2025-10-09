@@ -74,5 +74,15 @@ namespace Business.Services
                 await _veiculoRepository.Update(veiculo);
             }
         }
+
+        public async Task<IEnumerable<string>> GetVeiculosCores()
+        {
+            return await _veiculoRepository.GetVeiculosCores();
+        }
+
+        public async Task<QuantidadeVeiculosDTO> GetQuantidadeVeiculos()
+        {
+            return await _veiculoRepository.GetQuantidadeVeiculos();
+        }
     }
 }

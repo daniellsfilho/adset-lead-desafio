@@ -32,4 +32,12 @@ export class VeiculoService {
     public excluirVeiculo(id: any) {
         return this.httpClient.delete<any>(`${this.url}/veiculo?id=${id}`)
     }
+
+    public getCores() {
+        return this.httpClient.get<any>(`${this.url}/cores`)
+    }
+
+    public getQuantidadeVeiculos() {
+        return this.httpClient.get<any>(`${this.url}/quantidade-veiculos`)
+    }
 }
